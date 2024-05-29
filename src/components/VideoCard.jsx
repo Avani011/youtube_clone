@@ -6,12 +6,12 @@ import { demoThumbnailUrl, demoChannelTitle, demoChannelUrl, demoVideoTitle, dem
 const VideoCard = ({ video: { id: { videoID }, snippet } }) => {
   console.log(videoID, snippet);
   return (
-    <Card sx={{ width: { md:'320px', xs: '100%'}, boxShadow: 'none', borderRadius: 0 }} >
+    <Card sx={{ width: { xs: '100%', sm: '358px',  md:'320px'}, boxShadow: 'none', borderRadius: 0 }} >
       <Link to={videoID ? `/video/${videoID}` : demoVideoUrl} >
         <CardMedia 
           image={snippet?.thumbnails?.high?.url} 
           alt={snippet?.title}
-          sx={{width: 358, height: 189}}
+          sx={{width: { xs: '100%', sm: '358px',  md:'320px'}, height: 189}}
         />
       </Link>
       <CardContent sx={{backgroundColor: '#1e1e1e', height: '106px'}} >
