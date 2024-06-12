@@ -17,7 +17,7 @@
 //       setVideoDetail(data.items[0]);
 //     });
 
-//     fetchFromAPI(`search?part=snippet&relatedToVideoId=${id}&type=video`).then(
+//     fetchFromAPI(`search?part=snippet&relatedTovideoId=${id}&type=video`).then(
 //       (data) => {
 //         setRelatedVideos(data.items);
 //       }
@@ -115,7 +115,7 @@ const VideoDetail = () => {
       setLoading(false); // Set loading to false when fetching ends
     });
 
-    fetchFromAPI(`search?part=snippet&relatedToVideoId=${id}&type=video`).then(
+    fetchFromAPI(`search?part=snippet&relatedTovideoId=${id}&type=video`).then(
       (data) => {
         setRelatedVideos(data.items);
       }

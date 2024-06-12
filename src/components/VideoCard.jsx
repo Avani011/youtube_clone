@@ -3,25 +3,25 @@ import { Typography, Card, CardContent, CardMedia } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 import { demoThumbnailUrl, demoChannelTitle, demoChannelUrl, demoVideoTitle, demoVideoUrl } from "../utils/constants";
 
-const VideoCard = ({ video: { id: { videoID }, snippet } }) => {
-  console.log(videoID, snippet);
+const VideoCard = ({ video: { id: { videoId }, snippet } }) => {
+  console.log(videoId, snippet);
   return (
     <Card sx={{ width: { xs: '100%', sm: '358px',  md:'320px'}, boxShadow: 'none', borderRadius: 0 }} >
-      <Link to={videoID ? `/video/${videoID}` : demoVideoUrl} >
+      <Link to={videoId ? `/video/${videoId}` : demoVideoUrl} >
         <CardMedia 
-          image={snippet?.thumbnails?.high?.url} 
+          image={snippet?.thumbnails?.high?.url || demoThumbnailUrl} 
           alt={snippet?.title}
           sx={{width: { xs: '100%', sm: '358px',  md:'320px'}, height: 189}}
         />
       </Link>
       <CardContent sx={{backgroundColor: '#1e1e1e', height: '106px'}} >
-        <Link to={videoID ? `/video/${videoID}` : demoVideoUrl}>
+        <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
           <Typography variant="subtitle1" fontWeight="bold" color="#FFF">
             {snippet?.title.slice(0,60) ||
             demoVideoTitle.slice(0,60)}
           </Typography>
         </Link>
-        <Link to={snippet?.channelID ? `/channel/${snippet?.channelID}` : demoChannelUrl}>
+        <Link to={snippet?.channelId ? `/channel/${snippet?.channelId}` : demoChannelUrl}>
           <Typography variant="subtitle1" fontWeight="bold" color="#FFF">
             {snippet?.channelTitle ||
             demoChannelTitle}

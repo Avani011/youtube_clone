@@ -5,16 +5,23 @@ import { Box } from "@mui/material";
 import { Videos, ChannelCard} from './';
 import { fetchFromAPI } from "../utils/fetchFromAPI";
 
-const ChannelDetail = (videos) => {
+const ChannelDetail = () => {
 
-  const [channelDetail, setChannelDetail] = useState(null);
-  const [Videos, setVideos] = useState([]);
+  const [channelDetail, setChannelDetail] = useState({});
+  const [channelVideos, setChannelVideos] = useState([]);
 
   const { id } = useParams();
+
   useEffect(() => {
-    fetchFromAPI(`channels?part=snippet&id=${id}`).then((data) => setChannelDetail(data?.items[0]));
-    fetchFromAPI(`search?channelID=${id}&part=snippet&order=data`).then((data) => setVideos(data?.items[0]));
-  }, [id])
+    fetchFromAPI(`channels?part=snippet&id=${id}`).then((data) =>
+      setChannelDetail(data?.items[0])
+    );
+    fetchFromAPI(`search?channelId=${id}&part=snippet&order=date`).then(
+      (data) => {
+        setChannelVideos(data?.items || []);
+      }
+    );
+  }, [id]);
 
   return (
     <Box minHeight="95vh" >
@@ -29,7 +36,7 @@ const ChannelDetail = (videos) => {
       </Box>
       <Box display="flex" p="2" >
         <Box sx={{mr:{sm: '100px'}}} />
-          <Videos videos={videos} />
+          <Videos videos={channelVideos} />
       </Box>
     </Box>
   );
